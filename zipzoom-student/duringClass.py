@@ -200,11 +200,11 @@ class ClassHandle:
                 # 얼굴 눈 찾기
                 frame, sleep = FD.detect(frame, wake)
 
-                if sleep: #졸음 감지했을 때
+                if sleep:  # 졸음 감지했을 때
                     frame, s_idx = GA.detect(frame)
-                    if s_idx == 5: #손바닥을 보임
+                    if s_idx == 5:  # 손바닥을 보임
                         wake = True
-                elif not sleep:
+                else:
                     wake = False
                     s_idx = -1
                 
