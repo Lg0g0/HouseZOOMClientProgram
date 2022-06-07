@@ -204,10 +204,14 @@ class ClassHandle:
                     frame, s_idx = GA.detect(frame)
                     if s_idx == 5: #손바닥을 보임
                         wake = True
-                else:
+                elif not sleep:
                     wake = False
                     s_idx = -1
-                    
+                
+                #cv2.putText(frame, f'sleep{sleep}', (100, 100), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(255, 255, 255), thickness=2)
+                #cv2.putText(frame, f'wake{wake}', (100, 150), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(255, 255, 255), thickness=2)
+                #cv2.putText(frame, f'index{s_idx}', (100, 200), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(255, 255, 255), thickness=2)        
+                
                 # 퀴즈가 시작되면 손 인식 시작
                 # 퀴즈가 끝나면 손 인식 종료
                 if hand_detect != self.quizOn:

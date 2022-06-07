@@ -86,7 +86,8 @@ class gesture_analyzer:
                     img = cv2.flip(img, 1)
                     img = self.heart.add_heart(img)
                     img = cv2.flip(img, 1)
-        # else:
+        else:
+            self.idx = -1
             #img = cv2.flip(img, 1)
 
         img = cv2.flip(img, 1)

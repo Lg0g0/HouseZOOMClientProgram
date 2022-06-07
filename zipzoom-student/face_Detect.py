@@ -88,10 +88,10 @@ class face_detecter:
 
                 #cv2.putText(image, 'Blink', (200, 50), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(255, 255, 255), thickness=2)
             
-            elif (ratio <= 5.5) and (not wake) and (self.sleep): #눈을 뜨고 있지만 그 전까지 자고 있었고 손바닥을 보여주지 않음
+            elif (ratio <= 5.5) and (self.sleep) and (not wake): #눈을 뜨고 있지만 그 전까지 자고 있었고 손바닥을 보여주지 않음
                 image = self.draw_bomb(image)
             
-            elif (ratio <= 5.5) and (wake): #눈도 뜨고 있고 손바닥을 보임
+            elif (ratio <= 5.5) and (self.sleep) and (wake): #눈을 뜨고 있고 그 전까지 자고 있었지만 손바닥을 보임
                 self.alarm.alarm_Off()
                 
                 self.sleep = False
@@ -99,7 +99,14 @@ class face_detecter:
                 self.TIMER_FLAG = False
                 self.RUNNING_TIME = 0
                 self.ALARM_FLAG = False
-
+                
+            elif (ratio <= 5.5) and (not self. sleep): #눈도 뜨고 있고 그 전까지 자고 있지 않았음
+                self.sleep = False
+                self.COUNTER = 0
+                self.TIMER_FLAG = False
+                self.RUNNING_TIME = 0
+                self.ALARM_FLAG = False   
+           
             """   
             #얼굴 눈 윤곽선 그리기
             for face_landmarks in results.multi_face_landmarks:
